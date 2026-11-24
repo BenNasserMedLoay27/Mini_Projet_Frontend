@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="card shadow mb-4">                   
+    <div class="card-body"> 
+     <table class="table table-striped">
+        <tr> <th>N°</th><th>Id</th><th>Nom</th> <th>Prix d'inscription</th>  <th>Date d'inscription</th> <th>Système</th></tr>          
+         @for (universite of universites; track universite.idUniversite ; let index =$index; let nbr=$count; let first = $first; let last = $last)
+         {
+          
+          <tbody >
+            <tr >
+               <td>{{index}}</td>
+                <td>{{universite.idUniversite}}</td>
+               <td>{{universite.nomUniversite}}</td>
+               <td>{{universite.prixUniversite}}</td>
+               <td>{{universite.dateCreation | date:'dd/MM/yyyy'}}</td>
+
+               @if(universite.systeme){ 
+                <td>{{universite.systeme.nomSysteme}}</td>  }
+               @else {
+                <td>'PAS DE SYSTEME'</td>
+                }
+
+               <td><a class="btn btn-danger" (click)="supprimerUniversite(universite)">Supprimer</a></td> 
+               <td><a class="btn btn-success" [routerLink]="['/updateUniversite',universite.idUniversite]">Modifier</a></td>
+             </tr>                                    
+          </tbody>
+         }   
+      
+
+    </table>
+    </div>
+  </div>
+</div> 
